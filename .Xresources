@@ -1,0 +1,49 @@
+! Font
+URxvt.font:		xft:JetBrainsMono Nerd Font:pixelsize=16,xft:Nerd Font Symbols:pixelsize=16,xft:Hack Nerd Font Mono:size=12
+
+! Colors
+URxvt*foreground:	White
+urxvt*depth:		32
+urxvt*background:	rgba:0000/0000/0000/9600
+
+! Other
+URxvt.scrollBar:	false
+URxvt.internalBorder:   15
+
+! special
+*.foreground:		#e6e6e6
+*.background:		#1e1e1e
+*.cursorColor:		#e6e6e6
+
+! black
+*.color0:		#292929
+*.color8:		#353535
+
+! red
+*.color1:		#e44365
+*.color9:		#d05a7a
+
+! green
+*.color2:		#24e39d
+*.color10:		#3ec493
+
+! yellow
+*.color3:		#eda685
+*.color11:		#d1a38e
+
+! blue
+*.color4:      	#0067b0
+*.color12:		#155f94
+
+! magenta
+*.color5:		#b367cf
+*.color13:		#9d6bb0
+
+! cyan
+*.color6:		#00a5af
+*.color14:		#138990
+
+! white
+*.color7:		#e6e6e6
+*.color15:		#e6e6e6
+

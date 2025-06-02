@@ -1,0 +1,244 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = #211e1c
+background-alt = #d1c4e99
+foreground = #e5e9f0
+foreground-alt = #2c2926
+primary = #ffb52a
+secondary = #e60053
+alert = #B48EAD
+
+black = #292929
+red = #e44365
+green = #24e39d
+yellow = #ffbb00
+blue = #0067b0
+magenta = #b367cf              
+cyan = #00a5af                 
+white = #e6e6e6
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[bar/example]
+width = 100%
+height = 22
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 1
+line-color = ${colors.foreground}
+
+border-size = 5
+border-color = ${colors.background}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = JetBrainsMono Nerd Font:style=Bold:pixelsize=10;2
+
+; MODULES SETUP
+modules-left = bspwm
+modules-center = xwindow
+modules-right = pacman-updates filesystem xbacklight pulseaudio wlan eth battery memory temperature date powermenu
+
+separator = |
+
+cursor-click = pointer
+eursor-scroll = ns-resize
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %name%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %name%
+label-occupied-padding = 2
+
+label-urgent = %name%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %name%
+label-empty-foreground = ${colors.background}
+label-empty-padding = 2
+
+; Separator in between workspaces
+label-separator = |
+
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted =  %free%
+label-mounted-underline = ${colors.white}
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+label-unmounter-underline = ${colors.white}
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label>
+label =  %percentage%%
+
+format-underline = ${colors.cyan}
+
+[module/pacman-updates]
+type = custom/script
+exec = checkupdates | wc -l
+interval = 1000
+label = %output%
+format-prefix = " "
+format-underline = ${colors.yellow}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-underline = ${colors.magenta}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "RAM "
+format-underline = ${colors.cyan}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+
+format-connected = <label-connected>
+format-connected-underline = ${colors.magenta}
+label-connected = " %essid%"
+
+[module/eth]
+type = internal/network
+interface = enp1s0
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+[module/date]
+type = internal/date
+interval = 1
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = ""
+format-underline = ${colors.blue}
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+label-volume = 󰋎 %percentage%%
+
+label-muted = 󰋐 Muted
+
+format-muted-underline = ${colors.green}
+format-volume-underline = ${colors.green}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 100
+
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage%%
+format-charging-foreground = ${colors.color4}
+format-charging-background = ${colors.background}
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+
+
+
+ramp-capacity-0 = 󰁺
+ramp-capacity-1 = 󰁻
+ramp-capacity-2 = 󰁼
+ramp-capacity-3 = 󰁽
+ramp-capacity-4 = 󰁾
+ramp-capacity-5 = 󰁿
+ramp-capacity-6 = 󰂀
+ramp-capacity-7 = 󰂁
+ramp-capacity-8 = 󰂂
+ramp-capacity-9 = 󰁹
+
+
+animation-charging-0 = 󰂆
+animation-charging-1 = 󰂇
+animation-charging-2 = 󰂉
+animation-charging-3 = 󰂊
+animation-charging-4 = 󰂋
+animation-charging-5 = 󰂅
+animation-charging-framerate = 750
+
+format-charging-underline = ${colors.red}
+format-discharging-underline = ${colors.red}
+format-full-underline = ${colors.red}
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = 󱩅 <label>
+format-underline = ${colors.red}
+label = %temperature-c%
+
+
+[module/powermenu]
+type = custom/text 
+content =" " 
+content-padding =0
+click-left = systemctl poweroff
+content-foreground = ${colors.red}
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
